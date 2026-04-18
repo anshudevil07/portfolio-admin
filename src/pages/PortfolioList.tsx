@@ -4,7 +4,8 @@ import { FiSearch, FiEye, FiTrash2, FiCheck, FiX, FiExternalLink, FiCheckSquare,
 import { getPortfolios, updateStatus, deletePortfolio } from "../api";
 import "./PortfolioList.css";
 
-const API_BASE = "http://localhost:5000/api/admin";
+const API_BASE = `${(import.meta.env.VITE_API_URL as string | undefined)?.trim() || "https://portfolio-backend-anshudevil07s-projects.vercel.app/api"}/admin`;
+const PORTFOLIO_URL = (import.meta.env.VITE_3D_PORTFOLIO_URL as string | undefined)?.trim() || "https://3d-portfolio-red-ten.vercel.app";
 const getToken = () => localStorage.getItem("admin_token") || "";
 
 interface Portfolio {
@@ -153,7 +154,7 @@ const PortfolioList = () => {
               </span>
               <span className="row-muted">{new Date(p.createdAt).toLocaleDateString()}</span>
               <span className="actions">
-                <a href={`http://localhost:5173/portfolio/${p.slug}`} target="_blank" rel="noopener noreferrer" className="action-btn view-link" title="Open Portfolio">
+                <a href={`${PORTFOLIO_URL}/portfolio/${p.slug}`} target="_blank" rel="noopener noreferrer" className="action-btn view-link" title="Open Portfolio">
                   <FiExternalLink />
                 </a>
                 <button className="action-btn view" onClick={() => navigate(`/portfolios/${p._id}`)} title="View Details">

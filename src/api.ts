@@ -1,4 +1,4 @@
-const BASE = "http://localhost:5000/api/admin";
+const BASE = `${(import.meta.env.VITE_API_URL as string | undefined)?.trim() || "https://portfolio-backend-anshudevil07s-projects.vercel.app/api"}/admin`;
 
 export const getToken = () => localStorage.getItem("admin_token") || "";
 
